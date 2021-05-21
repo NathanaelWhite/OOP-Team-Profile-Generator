@@ -8,3 +8,5 @@ test('checks if office number is a number', () => {
 
     expect(manager.officeNum).toEqual(expect.any(Number));
 });
+
+// write test for getRole()

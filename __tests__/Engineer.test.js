@@ -7,3 +7,6 @@ test('test to check if github is a string', () => {
 
     expect(engineer.github).toEqual(expect.any(String));
 });
+
+// write test for getGithub()
+// write test for getRole()
