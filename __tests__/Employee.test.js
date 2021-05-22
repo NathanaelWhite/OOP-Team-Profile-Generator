@@ -1,5 +1,4 @@
 // require Employee js file
-const { expect } = require('@jest/globals');
 const Employee = require('../lib/Employee.js');
 
 // write a test to check if name is a string
@@ -20,13 +19,11 @@ test('gets an employees name', () => {
     expect(employee.getName()).toEqual(expect.stringContaining(employee.name));
 });
 // write test for getId()
-// test('gets an employees id', () => {
-//     const employee = new Employee('Dave', 5, 'test@email.com');
+test('gets an employees id', () => {
+    const employee = new Employee('Dave', 5, 'test@email.com');
 
-//     // revisit this test!!
-
-//     expect(employee.id).toBeGreaterThan(0);
-// });
+    expect(employee.getId()).toEqual(expect.any(Number));
+});
 // write test for getEmail()
 test('get the employees email', () => {
     const employee = new Employee('Dave', 5, 'test@email.com');

@@ -1,5 +1,4 @@
 // require manager js file 
-const { expect } = require('@jest/globals');
 const Manager = require('../lib/Manager.js');
 
 // test if office number is a number
@@ -10,3 +9,8 @@ test('checks if office number is a number', () => {
 });
 
 // write test for getRole()
+test('gets the managers role', () => {
+    const manager = new Manager('Dave', 5, 'test@email.com', 25);
+
+    expect(manager.getRole()).toEqual('Manager');
+});

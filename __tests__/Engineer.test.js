@@ -9,4 +9,14 @@ test('test to check if github is a string', () => {
 });
 
 // write test for getGithub()
+test('get the engineers github', () => {
+    const engineer = new Engineer('Dave', 5, 'test@email.com', 'github');
+
+    expect(engineer.getGithub()).toEqual(expect.stringContaining(engineer.github));
+});
 // write test for getRole()
+test('get the engineers role', () => {
+    const engineer = new Engineer('Dave', 5, 'test@email.com', 'github');
+
+    expect(engineer.getRole()).toEqual('Engineer');
+});

@@ -9,4 +9,14 @@ test('checks if school is a string', () => {
 });
 
 // write test for getSchool()
+test('get the interns school', () => {
+    const intern = new Intern('Dave', 5, 'test@email.com', 'UT');
+
+    expect(intern.getSchool()).toEqual(expect.stringContaining(intern.school));
+});
 // write test for getRole()
+test('get the interns role', () => {
+    const intern = new Intern('Dave', 5, 'test@email.com', 'UT');
+
+    expect(intern.getRole()).toEqual('Intern');
+});
