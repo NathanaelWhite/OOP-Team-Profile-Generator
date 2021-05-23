@@ -2,13 +2,11 @@
 const fs = require("fs");
 // require inquirer, page-template.js
 const inquirer = require("inquirer");
-const pageTemplate = require("./src/page-template.js");
 // require all lib files
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const Employee = require("./lib/Employee.js");
-
+const generateMarkdown = require("./src/page-template.js");
 
 let employeeArr = [];
 
@@ -25,16 +23,16 @@ const promptRole = () => {
     .then((response) => {
       if (response.role !== "Done") {
         promptEmployee(response.role);
-      }
-      else {
-          console.log('My team is complete!');
-          return employeeArr;
+      } else {
+        console.log("My team is complete!");
+        return employeeArr;
       }
     });
+    
 };
 
 const promptEmployee = (role) => {
-  inquirer
+  return inquirer
     .prompt([
       {
         type: "input",
@@ -100,40 +98,37 @@ const promptEngineer = (data) => {
 };
 
 const promptIntern = (data) => {
-    return inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'school',
-                message: 'Enter your School.'
-            }
-        ])
-        .then(({ school }) => {
-            const intern = new Intern(data.name, data.id, data.email, school);
-            console.log(intern);
-            employeeArr.push(intern);
-            promptRole();
-        });
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "school",
+        message: "Enter your School.",
+      },
+    ])
+    .then(({ school }) => {
+      const intern = new Intern(data.name, data.id, data.email, school);
+      console.log(intern);
+      employeeArr.push(intern);
+      promptRole();
+    });
 };
 // prompt user for information. create an object for user questions
 
 //writeFile to dist folder
+const writeToFile = (employeeArr) => {
+    fs.writeFileSync("./dist/index.html", employeeArr, "utf-8");
+};
 
 // TODO: Create a function to initialize app
-// const init = () => {
-//     inquirer
-//     .prompt(questions)
-//     .then((readmeData) => {
-//         return generateMarkdown(readmeData);
-//     })
-//     .then((data) => {
-//         return writeToFile(data)
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
-//   };
-
-//   // Function call to initialize app
-//   init();
-promptRole();
+promptRole()
+.then((data) => {
+  return generateMarkdown(data);
+})
+.then((pageHTML) => {
+  console.log("file created");
+  return writeToFile(pageHTML);
+})
+.catch((err) => {
+  console.log(err);
+});
