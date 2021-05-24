@@ -24,11 +24,16 @@ const promptRole = () => {
       if (response.role !== "Done") {
         promptEmployee(response.role);
       } else {
-        console.log("My team is complete!");
+        //writeFile to dist folder
+        const writeToFile = (employeeData) => {
+          fs.writeFileSync("./dist/index.html", generateMarkdown(employeeData), "utf-8");
+        };
+        writeToFile(employeeArr);
+        console.log("File created. My team is complete!");
+        console.log(employeeArr);
         return employeeArr;
       }
     });
-    
 };
 
 const promptEmployee = (role) => {
@@ -52,18 +57,19 @@ const promptEmployee = (role) => {
     ])
     .then((response) => {
       if (role === "Manager") {
-        promptManager(response);
+        promptManager(response, role);
       } else if (role === "Engineer") {
         // call engineer func
-        promptEngineer(response);
+        promptEngineer(response, role);
       } else {
         // call intern func
-        promptIntern(response);
+        promptIntern(response, role);
       }
     });
 };
 
-const promptManager = (data) => {
+const promptManager = (data, type) => {
+
   return inquirer
     .prompt([
       {
@@ -73,14 +79,14 @@ const promptManager = (data) => {
       },
     ])
     .then(({ officeNum }) => {
-      const manager = new Manager(data.name, data.id, data.email, officeNum);
+      const manager = new Manager(type, data.name, data.id, data.email, officeNum);
       console.log(manager);
       employeeArr.push(manager);
       promptRole();
     });
 };
 
-const promptEngineer = (data) => {
+const promptEngineer = (data, type) => {
   return inquirer
     .prompt([
       {
@@ -90,14 +96,14 @@ const promptEngineer = (data) => {
       },
     ])
     .then(({ github }) => {
-      const engineer = new Engineer(data.name, data.id, data.email, github);
+      const engineer = new Engineer(type, data.name, data.id, data.email, github);
       console.log(engineer);
       employeeArr.push(engineer);
       promptRole();
     });
 };
 
-const promptIntern = (data) => {
+const promptIntern = (data, type) => {
   return inquirer
     .prompt([
       {
@@ -107,7 +113,7 @@ const promptIntern = (data) => {
       },
     ])
     .then(({ school }) => {
-      const intern = new Intern(data.name, data.id, data.email, school);
+      const intern = new Intern(type, data.name, data.id, data.email, school);
       console.log(intern);
       employeeArr.push(intern);
       promptRole();
@@ -115,20 +121,20 @@ const promptIntern = (data) => {
 };
 // prompt user for information. create an object for user questions
 
-//writeFile to dist folder
-const writeToFile = (employeeArr) => {
-    fs.writeFileSync("./dist/index.html", employeeArr, "utf-8");
-};
+// //writeFile to dist folder
+// const writeToFile = (employeeArr) => {
+//     fs.writeFileSync("./dist/index.html", employeeArr, "utf-8");
+// };
 
 // TODO: Create a function to initialize app
 promptRole()
-.then((data) => {
-  return generateMarkdown(data);
-})
-.then((pageHTML) => {
-  console.log("file created");
-  return writeToFile(pageHTML);
-})
-.catch((err) => {
-  console.log(err);
-});
+  // .then((data) => {
+  //   return generateMarkdown(data);
+  // })
+  // .then((pageHTML) => {
+  //   console.log("file created");
+  //   return writeToFile(pageHTML);
+  // })
+  .catch((err) => {
+    console.log(err);
+  });

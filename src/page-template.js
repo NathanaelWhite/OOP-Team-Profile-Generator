@@ -1,30 +1,27 @@
-// const generateManager = (employeeArr) => {
-//   if (!employeeArr) {
-//     return "";
-//   }
-//   return `
-//   <div class="col">
-//   <div class="card cyan darken-2">
-//     <div class="card-content white-text">
-//       <span class="card-title">${employeeArr.getName()}</span>
-//       <span class="card-title">
-//         <span class="material-icons">coffee</span>Manager</span
-//       >
-//     </div>
-//     <div class="card-action white">
-//       <p>ID: ${employeeArr.getId()}</p>
+const generateManager = () => {
+  return `
+    <div class="col">
+    <div class="card cyan darken-2">
+      <div class="card-content white-text">
+        <span class="card-title">${name}</span>
+        <span class="card-title">
+          <span class="material-icons">coffee</span>data</span
+        >
+      </div>
+      <div class="card-action white">
+        <p>ID: ${id}</p>
+  
+        <p>Email: ${email}</p>
+  
+        <p>Office number: ${officeNum}</p>
+      </div>
+    </div>
+  </div>
+  `;
+};
 
-//       <p>Email: ${employeeArr.getEmail()}</p>
+const generateMarkdown = (data) => {
 
-//       <p>Office number: ${employeeArr.officeNum}</p>
-//     </div>
-//   </div>
-// </div>
-// `
-// }
-
-const generateMarkdown = () => {
-  // de-structure the page by section
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -50,7 +47,13 @@ const generateMarkdown = () => {
         </nav>
         <div class="container">
             <div class="row">
-          
+                ${data.map(d => {
+                return `
+               
+                    ${d.role === 'Manager' ? 'word' : d.role === 'Intern' ? 'sugma' : 'blahh'}
+                                   
+                `;
+                })}
             </div>
         </div>
     </body>
