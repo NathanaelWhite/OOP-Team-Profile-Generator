@@ -128,13 +128,6 @@ const promptIntern = (data, type) => {
 
 // TODO: Create a function to initialize app
 promptRole()
-  // .then((data) => {
-  //   return generateMarkdown(data);
-  // })
-  // .then((pageHTML) => {
-  //   console.log("file created");
-  //   return writeToFile(pageHTML);
-  // })
   .catch((err) => {
     console.log(err);
   });
