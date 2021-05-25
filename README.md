@@ -18,9 +18,9 @@
   ## Usage
 
   Run 'node index.js' in the command line to begin the prompts. Follow the prompts to add as many 'Employees' as desired. Once completed, the terminal will read 'File created. My teamis complete'. The index.html file will appear in the dist folder at which point, you can run the file in a local browser so see the results.
+  https://drive.google.com/file/d/11IpFr08-EzHZ0vZ5opAEdAdxnny_4rUH/view?usp=sharing
   
   ![image](../screen shot file path)
-
 
   ## Contributing
   Email me or add me using the GitHub link in the Questions section. This application was duo coded with Rachel Solov (GitHub: rsolov23)
