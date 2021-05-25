@@ -30,7 +30,6 @@ const promptRole = () => {
         };
         writeToFile(employeeArr);
         console.log("File created. My team is complete!");
-        console.log(employeeArr);
         return employeeArr;
       }
     });
